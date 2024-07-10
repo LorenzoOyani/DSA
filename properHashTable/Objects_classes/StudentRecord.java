@@ -1,5 +1,7 @@
 package properHashTable.Objects_classes;
 
+import java.util.Objects;
+
 import javax.management.RuntimeErrorException;
 
 
@@ -43,6 +45,8 @@ class StudentRecord implements Grades {
    public void setGrades(int grade){
     if(isvalideGrade(grade)){
         this.grade = grade;
+    }else{
+        throw new IllegalArgumentException("error: grade must be between 0 and 100");
     }
        
 }
@@ -58,6 +62,25 @@ class StudentRecord implements Grades {
         }
         return false;
     }
+
+    @Override
+    public int hashCode(){
+        return Objects.hash(id, grade, newName);
+
+    }
+
+
+    @Override
+    public boolean equals(Object o){ // eqaulity beyween objects checks!!
+        if(this == o) return true;
+        if(o == null || getClass() != o.getClass()) return false;
+
+        StudentRecord records = (StudentRecord) o;
+        
+        return id == records.id &&
+        grade == records.grade &&
+        Objects.equals(newName, records.newName);
+}
 
 
     String letterGrade(){

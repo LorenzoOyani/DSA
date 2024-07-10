@@ -9,11 +9,17 @@ class StudentCollection implements studentRepository {
 private StudentNode studentList; // class composition
 
 public StudentCollection(StudentNode list){
-    studentList.setStudentData(list.getStudentRecord());
+    if(list != null){
+        this.studentList = new StudentNode();
+        this.studentList.setStudentData(list.getStudentRecord());
+        this.studentList.setNext(list.getNext());
+    }
    
 }
 
-StudentCollection(){};    
+StudentCollection(){
+    this.studentList = null;
+};    
 
 public void addStudentRecord(StudentRecord record){
     StudentNode newNode = new StudentNode();
@@ -25,7 +31,7 @@ public void addStudentRecord(StudentRecord record){
 
 public StudentRecord RecordWithNumber(int num){
     StudentNode listNodes = getStudentNodeList();
-    while (listNodes.getStudentRecord().id != num) {
+    while (listNodes != null && listNodes.getStudentRecord().id != num) {
         listNodes = listNodes.getNext();
         
     }
@@ -53,25 +59,19 @@ public void removeRecord(int num){
     if(studentNodeList ==  null){
         return;
     }
-
+    
     if(trailingNode == null){
         studentNodeList = studentNodeList.getNext();
     }else{
-        StudentNode temp = getStudentNodeList();
-        while(trailingNode !=null){
-            trailingNode.setStudentData(null);
-         temp = temp.getNext();
-
-        }
+       trailingNode.setNext(studentNodeList.getNext());
     }
 
 }
 
 void deleteRecord(StudentNode studentList){
      if(studentList != null){
-        StudentNode temp = studentList;
-        studentList = studentList.getNext();
-        temp.setNext(null); 
+        studentList.setStudentData(null);
+        studentList.setNext(null); 
 
      }
 }
@@ -79,40 +79,31 @@ void deleteRecord(StudentNode studentList){
 // create a deep copy to assign one object properties to the next to avoid shallow-copy cross-linking
 
 StudentNode copyList(List<StudentNode> list, StudentRecord record){
-    if(list == null){
+    if(list == null || list.isEmpty()){
         return null;
     }
 
-    studentList = new StudentNode();
-    for(int i = 0; i < list.size(); i++){
-        if(list.size() > 0){
-            StudentNode listObject = list.get(i);
-            listObject.setStudentData(record);
-            studentList.setStudentData(record);
-            studentList.setNext(listObject);
-            StudentNode modifiedStudentNode = studentList;
-
-          StudentNode copiedObject =  deepCopyObject(modifiedStudentNode, record);
-            
-          return copiedObject;
-
-        } else{
-            break;
-        }
-}
-    
-
-    return null;
-
+    StudentNode dummyNode = new StudentNode();
+    StudentNode copyList = dummyNode;
+    for(StudentNode node : list){
+        StudentNode newNodes = new StudentNode();
+        newNodes.setStudentData(new StudentRecord(record.id, record.grade, record.newName));
+        copyList.setNext(node);
+        copyList = newNodes;
+    }
+   return dummyNode.getNext();
 }
 
 StudentNode deepCopyObject(StudentNode studentList, StudentRecord record){
-    while (studentList != null) {
-        
-    }
-    
-
+   if(studentList == null){
     return null;
+   }
+
+   StudentNode newNode = new StudentNode();
+   newNode.setStudentData(new StudentRecord(studentList.getStudentRecord().id, studentList.getStudentRecord().grade, studentList.getStudentRecord().newName));
+   newNode.setNext(deepCopyObject(studentList.getNext(), record));
+
+   return newNode;
 }
 
 // test
