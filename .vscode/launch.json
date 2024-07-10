@@ -2,6 +2,13 @@
   "version": "0.2.0",
   "configurations": [
     {
+      "type": "java",
+      "name": "NewGradeSystem",
+      "request": "launch",
+      "mainClass": "properHashTable.Objects_classes.NewGradeSystem",
+      "projectName": "DSA_7a6940dd"
+    },
+    {
       "name": "(gdb) Bash on Windows Launch",
       "type": "cppdbg",
       "request": "launch",
@@ -14,20 +21,22 @@
       "pipeTransport": {
         "debuggerPath": "/usr/bin/gdb",
         "pipeProgram": "${env:windir}\\system32\\bash.exe",
-        "pipeArgs": ["-c"],
+        "pipeArgs": [
+          "-c"
+        ],
         "pipeCwd": ""
       },
       "setupCommands": [
-          {
-              "description": "Enable pretty-printing for gdb",
-              "text": "-enable-pretty-printing",
-              "ignoreFailures": true
-          },
-          {
-              "description": "Set Disassembly Flavor to Intel",
-              "text": "-gdb-set disassembly-flavor intel",
-              "ignoreFailures": true
-          }
+        {
+          "description": "Enable pretty-printing for gdb",
+          "text": "-enable-pretty-printing",
+          "ignoreFailures": true
+        },
+        {
+          "description": "Set Disassembly Flavor to Intel",
+          "text": "-gdb-set disassembly-flavor intel",
+          "ignoreFailures": true
+        }
       ]
     },
     {

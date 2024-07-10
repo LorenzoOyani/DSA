@@ -21,6 +21,7 @@ StudentCollection(){
     this.studentList = null;
 };    
 
+@Override
 public void addStudentRecord(StudentRecord record){
     StudentNode newNode = new StudentNode();
     newNode.setStudentData(record);
@@ -28,7 +29,7 @@ public void addStudentRecord(StudentRecord record){
     studentList = newNode;
 
 }
-
+@Override
 public StudentRecord RecordWithNumber(int num){
     StudentNode listNodes = getStudentNodeList();
     while (listNodes != null && listNodes.getStudentRecord().id != num) {
@@ -45,10 +46,10 @@ public StudentRecord RecordWithNumber(int num){
     }
 }
 
-public  StudentNode getStudentNodeList(){
-    return studentList;
+public StudentNode getStudentNodeList(){
+       return  this.studentList = new StudentNode();
 }
-
+@Override
 public void removeRecord(int num){
     StudentNode studentNodeList = getStudentNodeList();
     StudentNode trailingNode = null;

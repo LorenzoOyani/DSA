@@ -71,7 +71,7 @@ class StudentRecord implements Grades {
 
 
     @Override
-    public boolean equals(Object o){ // eqaulity beyween objects checks!!
+    public boolean equals(Object o){ // eqaulity between objects checks!!
         if(this == o) return true;
         if(o == null || getClass() != o.getClass()) return false;
 
@@ -87,17 +87,23 @@ class StudentRecord implements Grades {
         if(!isvalideGrade(grade)){
             throw new RuntimeErrorException(null);
         }
-      final int NUMBERCATEGORIES = 11;
+      final int GRADENUMBERCATEGORIES = 11;
       final String[] gradeLetter = new String[]{"F", "D", "D+", "C-", "C", "C+", "B-", "B", "B+", "A-", "A"};
       final int[] gradeScore = new int[]{0, 60, 67, 70, 73, 77, 80, 83, 87, 90, 93};
 
-      int category = 0;
-      while (category < NUMBERCATEGORIES && gradeScore[category]  <= grade ) {
-        category++;
+    //   int category = 0;
+    //   while (category < GRADENUMBERCATEGORIES && gradeScore[category]  <= grade ) {
+    //     category++;
         
-      }
+    //   }
 
-        return gradeLetter[category - 1];
+    for(int i = 0; i < GRADENUMBERCATEGORIES; i++){
+        if(gradeScore[i] <= grade){
+           return gradeLetter[i - 1];
+        }
+    }
+
+        return gradeLetter[GRADENUMBERCATEGORIES -1];
     }
     
 }

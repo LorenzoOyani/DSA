@@ -4,8 +4,8 @@ import java.util.Scanner;
 
 public class NewGradeSystem  {
 
-    private static   String[] gradeLetters;
-    private static int[] gradeScoreList =  {0, 54, 59, 65, 69, 70, 85, 93};
+    private static final String[] gradeLetters = new String[]{"F", "C-", "C+", "B-", "B+", "A-", "A+","A++"};
+    private static final int[] gradeScoreList =  {0, 54, 59, 65, 69, 70, 85, 93}; // c-style!!
     private static final int MAX_SIZE = 8;
 
 
@@ -28,9 +28,9 @@ public class NewGradeSystem  {
         if(!validGradeSystem(gradings)){
             throw new IllegalArgumentException("invalide grading system!");
         }
-        gradeLetters = new String[]{"F", "C-", "C+", "B-", "B+", "A-", "A+","A++"};
 
 
+        //Reference:  do a calculation or comparizon in an array can be done within the body of a loop!
         for(int i = 1; i <= MAX_SIZE; i++){
           if(gradingScore < gradeScoreList[i]){
            return gradeLetters[i - 1];
@@ -46,31 +46,32 @@ public class NewGradeSystem  {
         Scanner scanner = new Scanner(System.in);
 
         int newGradings[] = new int[MAX_SIZE];
-        int finalGradeScore = 1;
         try{
             
-                for(int i =0; i < MAX_SIZE; i++){
+            for(int i =0; i < MAX_SIZE; i++){
                     int input = scanner.nextInt();
                     if(input == -1){
                         break;
                 }
                 newGradings[i] = input;
               
-                } 
-                if(validGradeSystem(newGradings)){
-                System.out.println("Enter your score between 0 to 100 and (type -1) to exit: ");
-                    finalGradeScore = scanner.nextInt();
-                    if(finalGradeScore > 0 && finalGradeScore <= 100){
-                        String finalGrade = activateNewGradingSystem(newGradings, finalGradeScore);
-                        System.out.println("your grades: "+ finalGrade);
+            } 
+            while(true){
+            int finalGradeScore = -1;
+            if(finalGradeScore == -1){
+                break;
 
-                    }
-                    
-                }else{
-                    System.out.println("please enter a valid grade ");;
-                }
+            }else if(finalGradeScore > 0 && finalGradeScore <=100){
+                String letteGrades = activateNewGradingSystem(newGradings, finalGradeScore);
+                System.out.println("your grades "+ letteGrades);
+            }else{
+                System.out.println("enter a valid grade: ");
+            }
 
-            }catch(Exception ignored){
+
+            }
+
+        }catch(Exception ignored){
             System.out.println("invalid input");
         }
         scanner.close();
