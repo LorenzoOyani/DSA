@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdbool.h>
 #include <stdlib.h>
-#include <string>
+#include <string.h>
 
 #define MAX_SIZE 256
 #define Table_size 20

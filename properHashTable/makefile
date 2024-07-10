@@ -1,8 +1,8 @@
 CC= clang
 CFLAGS= -Wall -g
-
+BINS: libraryTest libmycode.so
 # Default target
-all: libraryTest
+all: $(BINS)
 
 # Object file for my code
 libmycode.o: libmycode.c mycode.h
@@ -16,6 +16,9 @@ libmycode.so: libmycode.c mycode.h
 libraryTest: libraryTest.c libmycode.o
 	$(CC) $(CFLAGS) -o $@ $^
 
+runtime_libraryTest: libraryTest.c
+	$(CC) $(CFLAGS) -o $@ $^ -L. -lmycode
+
 # Clean up generated files
 clean:
-	rm -f *.o *.so libraryTest
+	rm -f *.o $(BINS)

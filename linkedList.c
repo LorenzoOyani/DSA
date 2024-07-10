@@ -11,7 +11,7 @@ typedef struct node node_t;
 
 
 void printList(node_t* head){
-    node_t *temp = head;
+    node_t *temp = head; // assign the head to a temp to read the value, and print to the console.
     while(temp != NULL){
         printf("\t%d\n", temp ->value);
         temp = temp ->next;
