@@ -3,6 +3,27 @@
   "configurations": [
     {
       "type": "java",
+      "name": "mergeSort",
+      "request": "launch",
+      "mainClass": "properHashTable.mergeSort",
+      "projectName": "DSA_7a6940dd"
+    },
+    {
+      "type": "java",
+      "name": "bubblesort",
+      "request": "launch",
+      "mainClass": "properHashTable.bubblesort",
+      "projectName": "DSA_7a6940dd"
+    },
+    {
+      "type": "java",
+      "name": "palindrome",
+      "request": "launch",
+      "mainClass": "properHashTable.Objects_classes.palindrome",
+      "projectName": "DSA_7a6940dd"
+    },
+    {
+      "type": "java",
       "name": "NewGradeSystem",
       "request": "launch",
       "mainClass": "properHashTable.Objects_classes.NewGradeSystem",
@@ -77,8 +98,8 @@
       "args": [],
       "stopAtEntry": false,
       "externalConsole": true,
-      "cwd": "c:/Users/LAWRENCE/DSA",
-      "program": "c:/Users/LAWRENCE/DSA/build/Debug/outDebug",
+      "cwd": "c:/Users/LAWRENCE/DSA/properHashTable",
+      "program": "c:/Users/LAWRENCE/DSA/properHashTable/build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [
